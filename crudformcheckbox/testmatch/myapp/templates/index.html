@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Checkbox</title>
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</head>
+<body>
+    
+<center>
+    <header>
+        <h1>Django Mysql Form Action CRUD</h1>
+    </header>
+    <hr>
+    {% if messages %}
+            {%for message in messages %}
+                {%if message.tags == 'error' %}
+                     <div class="alert alert-danger">
+                        {{message}}
+                     </div>
+                 {% else %}
+                    <div class="alert alert-{{message.tags}}">
+                        {{message}}
+                    </div>
+                {% endif %}
+            {% endfor %}
+    {% endif %}
+        
+<form action="create" method="POST" autocomplete="off">
+    {% csrf_token %}
+   
+     <div class="mb-3">
+        <label>Name:</label>
+        <input type="text" name="name"  class="form-control" style="width:30%;" required="required"/>
+    </div>
+  
+   
+    <div class="mb-3">
+        <label>Language:</label>
+        <br>
+        <label>Tamil:</label>
+        <input type="checkbox" name="language"  value="tamil"/>
+       
+        <label>English:</label>
+        <input type="checkbox" name="language"  value="english"/>
+       
+    </div>
+
+    <div class="mb-3">
+        <label>Gender:</label>
+        <br>
+        <label>Male:</label>
+        <input type="radio" name="gender" value="male"/>
+
+        <label>Female:</label>
+        <input type="radio" name="gender" value="female"/>
+   
+    <br>
+    <br>  
+ 
+    <div class="mb-3">
+        <button type="success"  class="btn btn-primary">Create</button>
+    </div>
+</form>
+
+<hr>
+<br/>
+</center>
+
+<table class="table table-bordered">
+    <thead class="alert-success">
+        <tr>
+            <th>Name</th>
+            <th>Language</th>
+            <th>Gender</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for checkbox in checkboxs %}
+        <tr>
+            <td>{{checkbox.name}}</td>
+            <td>{{checkbox.language}}</td>
+            <td>{{checkbox.gender}}</td>
+            <td>
+                <a class="btn btn-warning" href="/update/{{checkbox.id}}">Update</a>
+                <a class="btn btn-danger" href="delete/{{checkbox.id}}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+</body>
+</html>
