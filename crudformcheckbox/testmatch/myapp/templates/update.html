@@ -12,15 +12,28 @@
             <header>
                 <h1>Django Mysql Form Action CRUD</h1>
             </header>
+	     <hr>
            <br>
-            <form method="POST">
-                {% csrf_token %}
-                {{ form.as_p }}
-
-                <div class="mb-3">
-                    <button type="success"  class="btn btn-primary">Update</button>
-                </div>
-            </form>
+           <div class="col-4">
+                <form method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                        <label for="" class="form-label" style="text-align: left; display: block;">Name:</label>
+                            {{form.name}}
+                    </div>
+                    <div class="mb-4">
+                        <label for="" class="form-label" style="text-align: left; display: block;">Language:</label>
+                        {{form.language}}
+                    </div>
+                    <div class="mb-4">
+                        <label for="" class="form-label" style="text-align: left; display: block;">Gender:</label>
+                              {{form.gender}}
+                        </div>
+                        <div class="mb-3">
+                            <button type="success"  class="btn btn-primary">Update</button>
+                        </div>
+                </form>
+            </div>
     </center>
 </body>
 </html>
